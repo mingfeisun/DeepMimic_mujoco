@@ -1,0 +1,146 @@
+<mujoco model="humanoid">
+    <compiler angle="degree" inertiafromgeom="true"/>
+    <default>
+        <joint limited="true" armature="0.02" damping="5" stiffness="10"/>
+        <geom conaffinity="1" condim="1" contype="1" margin="0.001" material="geom" rgba="0.8 0.6 .4 1"/>
+        <site material="geom" rgba="0.8 0.6 .4 1"/>
+        <motor ctrllimited="true" ctrlrange="-1.0 1.0"/>
+    </default>
+    <option integrator="RK4" iterations="50" solver="PGS" timestep="0.002">
+    </option>
+    <asset>
+        <texture builtin="gradient" height="100" rgb1=".4 .5 .6" rgb2="0 0 0" type="skybox" width="100"/>
+        <texture builtin="flat" height="1278" mark="cross" markrgb="1 1 1" name="texgeom" random="0.01" rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" type="cube" width="127"/>
+        <texture builtin="checker" height="100" name="texplane" rgb1="0 0 0" rgb2="0.8 0.8 0.8" type="2d" width="100"/>
+        <material name="MatPlane" reflectance="0.5" shininess="1" specular="1" texrepeat="60 60" texture="texplane"/>
+        <material name="geom" texture="texgeom" texuniform="true"/>
+    </asset>
+    <worldbody>
+        <geom condim="3" friction="1 .1 .1" material="MatPlane" name="floor" pos="0 0 0" rgba="0.8 0.9 0.8 1" size="20 20 0.125" type="plane"/>
+        <body name="root" pos="0 0 1">
+            <geom name="root" mass="2.5" pos="0 0 0.07" size=".09" type="sphere"/>
+            <light name="tracking_light" pos="0 0 7" dir="0 0 -1" mode="trackcom"/>
+            <camera name="back" pos="0 3 2.4" xyaxes="-1 0 0 0 -1 2" mode="trackcom"/>
+            <camera name="side" pos="-3 0 2.4" xyaxes="0 -1 0 1 0 2" mode="trackcom"/>
+            <joint armature="0" damping="0" limited="false" name="root" pos="0 0 0" stiffness="0" type="free"/>
+            <site name="joint_waist" pos="0 0 0.205" size="0.07" type="sphere"/>
+            <site name="joint_front_x" rgba='1 0 0 1' pos="0.08 0 0.205" size="0.01 0.01 0.01" type="box"/>
+            <body name="chest" pos="0 0 0.236151">
+                <geom name="chest" mass="3.0" pos="0 0 0.12" size=".11" type="sphere"/>
+                <joint name="chest_x" axis="1 0 0" pos="0 0 0" range="-68.75 68.75" type="hinge"/>
+                <joint name="chest_y" axis="0 1 0" pos="0 0 0" range="-68.75 68.75" type="hinge"/>
+                <joint name="chest_z" axis="0 0 1" pos="0 0 0" range="-68.75 68.75" type="hinge"/>
+                <body name="neck" pos="0 0 0.223894">
+                    <geom name="neck" mass="2.0" pos="0 0 0.175" size=".1025" type="sphere"/>
+                    <joint name="neck_x" axis="1 0 0" pos="0 0 0" range="-40 40" type="hinge"/>
+                    <joint name="neck_y" axis="0 1 0" pos="0 0 0" range="-57.3 57.3" type="hinge"/>
+                    <joint name="neck_z" axis="0 0 1" pos="0 0 0" range="-57.3 57.3" type="hinge"/>
+                    <site name="joint_neck" pos="0 0 0.02" size="0.04" type="sphere"/>
+                </body>
+                <site pos="-0.011 -0.095 0.24" euler="-90 0 0" name="right_clavicle" size="0.045 0.025" type="capsule"/>
+                <body name="right_shoulder" pos="-0.02405 -0.18311 0.2435">
+                    <geom fromto="0 0 -0.05 0 0 -0.23" name="right_shoulder" mass="1.5" size="0.045" type="capsule"/>
+                    <site name="joint_right_shoulder" pos="0 0 0" size="0.04" type="sphere"/>
+                    <joint name="right_shoulder_x" axis="1 0 0" pos="0 0 0" range="-170 28.65" type="hinge"/>
+                    <joint name="right_shoulder_y" axis="0 1 0" pos="0 0 0" range="-180.0 40.11" type="hinge"/>
+                    <joint name="right_shoulder_z" axis="0 0 1" pos="0 0 0" range="-85.94 85.94" type="hinge"/>
+                    <body name="right_elbow" pos="0 0 -0.274788">
+                        <geom fromto="0 0 -0.0525 0 0 -0.1875" name="right_elbow" mass="1.0" size="0.04" type="capsule"/>
+                        <joint axis="0 -1 0" name="right_elbow" pos="0.028 0 0" range="0 140" type="hinge"/>
+                        <site name="joint_right_elbow" pos="0 0 0" size="0.03" type="sphere"/>
+                        <geom name="right_wrist" mass="0.5" pos="0 0 -0.258947" size="0.04" type="sphere"/>
+                    </body>
+                </body>
+                <site name="left_clavicle" euler="-90 0 0" pos="-0.011 0.095 0.24" size="0.045 0.025" type="capsule"/>
+                <body name="left_shoulder" pos="-0.02405 0.18311 0.2435">
+                    <geom fromto="0 0 -0.05 0 0 -0.23" name="left_shoulder" mass="1.5" size="0.045" type="capsule"/>
+                    <joint name="left_shoulder_x" axis="1 0 0" pos="0 0 0" range="-28.65 170"  type="hinge"/>
+                    <joint name="left_shoulder_y" axis="0 1 0" pos="0 0 0" range="-180 40.11"  type="hinge"/>
+                    <joint name="left_shoulder_z" axis="0 0 1" pos="0 0 0" range="-85.94 85.94"  type="hinge"/>
+                    <site name="joint_left_shoulder" pos="0 0 0" size="0.04" type="sphere"/>
+                    <body name="left_elbow" pos="0 0 -0.274788">
+                        <geom fromto="0 0 -0.0525 0 0 -0.1875" name="left_elbow" mass="1.0" size="0.04" type="capsule"/>
+                        <joint axis="0 -1 0" name="left_elbow" pos="0.028 0 0" range="0 140" type="hinge"/>
+                        <site name="joint_left_elbow" pos="0 0 0" size="0.03" type="sphere"/>
+                        <geom name="left_wrist" mass="0.5" pos="0 0 -0.258947" size="0.04" type="sphere"/>
+                    </body>
+                </body>
+            </body>
+            <body name="right_hip" pos="0 -0.094887 -0.05">
+                <geom fromto="0 0 -0.06 0 0 -0.36" name="right_hip" mass="4.5" size="0.055" type="capsule"/>
+                <site name="joint_right_hip" pos="0 0 0.01" size="0.05" type="sphere"/>
+                <joint name="right_hip_x" axis="1 0 0" pos="0 0 0" range="-68.75 68.75" type="hinge"/>
+                <joint name="right_hip_y" axis="0 1 0" pos="0.02 0 0" range="-140 80" type="hinge"/>
+                <joint name="right_hip_z" axis="0 0 1" pos="0 0 0" range="-57.3 57.3" type="hinge"/>
+                <body name="right_knee" pos="0 0 -0.421546">
+                    <geom fromto="0 0 -0.045 0 0 -0.355" name="right_knee" mass="3.0" size="0.05" type="capsule"/>
+                    <site name="joint_right_knee" pos="0 0 0" size="0.035" type="sphere"/>
+                    <joint axis="0 -1 0" name="right_knee" pos="-0.035 0 0" range="-130 0" type="hinge"/>
+                    <body name="right_ankle" pos="0 0 -0.40987">
+                        <geom name="right_ankle" mass="1.0" pos="0.045 0 -0.0425" size="0.088 0.045 0.027" type="box"/>
+                        <site name="joint_right_ankle" pos="0 0 0" size="0.04" type="sphere"/>
+                        <joint name="right_ankle_x" axis="1 0 0" pos="0 0 0" range="-40 40" type="hinge"/>
+                        <joint name="right_ankle_y" axis="0 1 0" pos="-0.02 0 0" range="-50.0 80.0" type="hinge"/>
+                        <joint name="right_ankle_z" axis="0 0 1" pos="0 0 0" range="-20 20" type="hinge"/>
+                    </body>
+                </body>
+            </body>
+            <body name="left_hip" pos="0 0.094887 -0.05">
+                <geom fromto="0 0 -0.06 0 0 -0.36" name="left_hip" mass="4.5" size="0.055" type="capsule"/>
+                <site name="joint_left_hip" pos="0 0 0.01" size="0.05" type="sphere"/>
+                <joint name="left_hip_x" axis="1 0 0" pos="0 0 0" range="-68.75 68.75" type="hinge"/>
+                <joint name="left_hip_y" axis="0 1 0" pos="0.02 0 0" range="-140 80" type="hinge"/>
+                <joint name="left_hip_z" axis="0 0 1" pos="0 0 0" range="-57.3 57.3" type="hinge"/>
+                <body name="left_knee" pos="0 0 -0.421546">
+                    <geom fromto="0 0 -0.045 0 0 -0.355" name="left_knee" mass="3.0" size="0.05" type="capsule"/>
+                    <site name="joint_left_knee" pos="0 0 0" size="0.035" type="sphere"/>
+                    <joint axis="0 -1 0" name="left_knee" pos="-0.035 0 0" range="-130 0" type="hinge"/>
+                    <body name="left_ankle" pos="0 0 -0.40987">
+                        <geom name="left_ankle" mass="1.0" pos="0.045 0 -0.0425" size="0.088 0.045 0.027" type="box"/>
+                        <joint name="left_ankle_x" axis="1 0 0" pos="0 0 0" range="-57.3 57.3" type="hinge"/>
+                        <joint name="left_ankle_y" axis="0 1 0" pos="-0.02 0 0" range="-50.0 80.0" type="hinge"/>
+                        <joint name="left_ankle_z" axis="0 0 1" pos="0 0 0" range="-20 20" type="hinge"/>
+                        <site name="joint_left_ankle" pos="0 0 0" size="0.04" type="sphere"/>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <actuator>
+        <motor gear="10" joint="chest_x" name="chest_x"/>
+        <motor gear="10" joint="chest_y" name="chest_y"/>
+        <motor gear="10" joint="chest_z" name="chest_z"/>
+        <motor gear="10" joint="neck_x" name="neck_x"/>
+        <motor gear="10" joint="neck_y" name="neck_y"/>
+        <motor gear="10" joint="neck_z" name="neck_z"/>
+
+        <motor gear="10" joint="right_shoulder_x" name="right_shoulder_x"/>
+        <motor gear="10" joint="right_shoulder_y" name="right_shoulder_y"/>
+        <motor gear="10" joint="right_shoulder_z" name="right_shoulder_z"/>
+        <motor gear="10" joint="right_elbow" name="right_elbow"/>
+
+        <motor gear="10" joint="left_shoulder_x" name="left_shoulder_x"/>
+        <motor gear="10" joint="left_shoulder_y" name="left_shoulder_y"/>
+        <motor gear="10" joint="left_shoulder_z" name="left_shoulder_z"/>
+        <motor gear="10" joint="left_elbow" name="left_elbow"/>
+
+        <motor gear="100" joint="right_hip_x" name="right_hip_x"/>
+        <motor gear="100" joint="right_hip_y" name="right_hip_y"/>
+        <motor gear="100" joint="right_hip_z" name="right_hip_z"/>
+
+        <motor gear="100" joint="right_knee" name="right_knee"/>
+        <motor gear="10" joint="right_ankle_x" name="right_ankle_x"/>
+        <motor gear="10" joint="right_ankle_y" name="right_ankle_y"/>
+        <motor gear="10" joint="right_ankle_z" name="right_ankle_z"/>
+
+        <motor gear="100" joint="left_hip_x" name="left_hip_x"/>
+        <motor gear="100" joint="left_hip_y" name="left_hip_y"/>
+        <motor gear="100" joint="left_hip_z" name="left_hip_z"/>
+
+        <motor gear="100" joint="left_knee" name="left_knee"/>
+        <motor gear="10" joint="left_ankle_x" name="left_ankle_x"/>
+        <motor gear="10" joint="left_ankle_y" name="left_ankle_y"/>
+        <motor gear="10" joint="left_ankle_z" name="left_ankle_z"/>
+    </actuator>
+</mujoco>

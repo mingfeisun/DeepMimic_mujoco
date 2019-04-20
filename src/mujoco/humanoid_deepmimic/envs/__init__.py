@@ -1,0 +1,2 @@
+from humanoid_deepmimic.envs.humanoid_deepmimic_env import HumanoidDeepMimicEnv
+from humanoid_deepmimic_extrahard_env.envs.humanoid_deepmimic_extrahard_env import HumanoidDeepMimicExtraHardEnv

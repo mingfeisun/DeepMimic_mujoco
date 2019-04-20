@@ -1,0 +1,2 @@
+model_checkpoint_path: "trpo-walk-0"
+all_model_checkpoint_paths: "trpo-walk-0"
