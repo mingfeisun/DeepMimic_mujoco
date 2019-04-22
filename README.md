@@ -30,6 +30,7 @@ python3 -m pip install mujoco-py
 python3 -m pip installl gym
 python3 -m pip install tensorflow-gpu
 python3 -m pip install pyquaternion
+python3 -m pip install joblib
 ```
 
 * MPI & MPI4PY: mpi for parrellel training
