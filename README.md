@@ -19,6 +19,25 @@ Examples:
 * Stand up straight (training via TRPO):
 <img src="docs/standup.gif" alt="standup" width="800px"/>
 
+# Install
+* Mujoco: Download mujoco200 and put it in the ~/.mujoco/ folder (mjkey.txt should also be in this folder). Then install mujoco-py:
+``` bash 
+python3 -m pip install mujoco-py
+```
+
+* python3 modules: python dependencies
+``` bash
+python3 -m pip installl gym
+python3 -m pip install tensorflow-gpu
+python3 -m pip install pyquaternion
+```
+
+* MPI & MPI4PY: mpi for parrellel training
+``` bash 
+sudo apt-get install openmpi-bin openmpi-common openssh-client libopenmpi-dev
+python3 -m pip install mpi4py
+```
+
 # Usage
 * Testing examples:
 ``` bash
