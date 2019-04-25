@@ -8,16 +8,16 @@ Mujoco version of [DeepMimic](https://xbpeng.github.io/projects/DeepMimic/index.
 Examples: 
 
 * Walk (play MoCap data):
-<img src="docs/walk.gif" alt="walk" width="800px"/>
+<img src="docs/walk.gif" alt="walk" width="400px"/>
 
 * Spinkick (play MoCap data):
-<img src="docs/spinkick.gif" alt="spinkick" width="800px"/>
+<img src="docs/spinkick.gif" alt="spinkick" width="400px"/>
 
 * Dance_b (play MoCap data):
-<img src="docs/dance.gif" alt="dance" width="800px"/>
+<img src="docs/dance.gif" alt="dance" width="400px"/>
 
 * Stand up straight (training via TRPO):
-<img src="docs/standup.gif" alt="standup" width="800px"/>
+<img src="docs/standup.gif" alt="standup" width="400px"/>
 
 # Install
 * Mujoco: Download mujoco200 and put it in the ~/.mujoco/ folder (mjkey.txt should also be in this folder). Then install mujoco-py:
