@@ -1,4 +1,5 @@
 # Intro
+> Status: Archive (code is provided as-is)
 
 Mujoco version of [DeepMimic](https://xbpeng.github.io/projects/DeepMimic/index.html): 
 * No C++ codes --> pure python
