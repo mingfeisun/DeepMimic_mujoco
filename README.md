@@ -69,3 +69,15 @@ This repository is based on code accompanying the SIGGRAPH 2018 paper:
 The framework uses reinforcement learning to train a simulated humanoid to imitate a variety
 of motion skills from mocap data.
 Project page: https://xbpeng.github.io/projects/DeepMimic/index.html
+
+Please use this bibtex if you want to cite this repository in your publications:
+```
+@misc{deepmimic_mujoco,
+  author = {Sun, Mingfei},
+  title = {Implementations of DeepMimic for Mujoco simulator},
+  year = {2019},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/mingfeisun/DeepMimic_mujoco}},
+}
+```
